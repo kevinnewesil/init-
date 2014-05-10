@@ -227,6 +227,28 @@ table.table thead tr>:first-child, table.table tbody tr>:first-child{
 	font-weight: bolder;
 }
 
+.sidebar-left-3{
+	position:absolute;
+	left:-6.2%;
+	top:25%;
+	width:150px;
+	height:64px;
+
+
+	background-color: rgba(27, 27, 27, 0.96);
+	padding:5px;
+	border-radius: 0px 10px 10px 0;
+}
+
+.sidebar-left-3 img{
+	width:64px;
+	height:64px;
+	float:right;
+}
+
+.location{
+	display:none;
+}
 
 /** __STYLE FOR PHPINFO SIDEBAR__ **/
 

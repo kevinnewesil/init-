@@ -16,9 +16,9 @@
 
 	$scandir  = scandir( $_SERVER['DOCUMENT_ROOT'] );
 	
-	$template = file_get_contents( 'apache_index/index.html' );
-	$linkTmp  = file_get_contents( 'apache_index/link.html' );
-	$tableTmp = file_get_contents( 'apache_index/tabledata.html' );
+	$template = file_get_contents( 'webserver_index/index.html' );
+	$linkTmp  = file_get_contents( 'webserver_index/link.html' );
+	$tableTmp = file_get_contents( 'webserver_index/tabledata.html' );
 
 	$tablePH  = array( '{fileTypeIcon}', '{name}', '{lastModified}', '{link}' );
 

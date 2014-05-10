@@ -3,7 +3,8 @@
     <head>
         <title>Apache webserver</title>
         <link rel="stylesheet" type="text/css" href="/webserver_index/assets/style.css">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/webserver_index/assets/js/jquery.js"></script>
+        <script type="text/javascript" src="/webserver_index/assets/js/geo.js"></script>
 
         <script type="text/javascript">
             $( document ).ready( function() {
@@ -49,6 +50,45 @@
 
                 $(".close").on("click",function(){
                     $(this).parent().css("display","none");
+                });
+
+                navigator.geolocation.getCurrentPosition( successCallback, errorCallback, { maximumAge : 600000 } );
+
+                function successCallback( position ) {
+                    lat = position.coords.latitude;
+                    lon = position.coords.longitude;
+
+                    url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&sensor=false";
+
+                    $.getJSON( url ).done( function( data ) {
+                        console.log( data.results);
+                        $( ".location" ).html( data.results[13].formatted_address );
+                    }).fail( function( jqxhr, textStatus, error ){
+                        console.log( "Request failed with error:" + error );
+                    });
+                }
+
+                function errorCallback( error ){
+                    console.log( "Failed to fetch geo location with error:" + error );
+                }
+
+                $( ".sidebar-left-3" ).on( "mouseenter", function() {
+                    $(this).animate({
+                        "left" : "0%"
+                    }, 1000, function() {
+                        $(".map").css("display","none");
+                        $(".location").css("display","block");
+                    });
+
+                });
+
+                $( ".sidebar-left-3" ).on( "mouseleave", function() {
+                    $(this).animate({
+                        "left" : "-6.2%"
+                    }, 1000, function() {
+                        $(".map").css("display","block");
+                        $(".location").css("display","none");
+                    });
                 });
             });
 
@@ -128,6 +168,16 @@
                     <img src="/webserver_index/assets/images/php-icon.png" alt="PHP">
                 </div>
 
+            </div>
+
+            <div id="sidebar3" class="sidebar-left-3">
+                <div class="location">
+                    
+                </div>
+
+                <div class="map show-button">
+                    <img src="/webserver_index/assets/images/map-icon.png" alt="Location">
+                </div>
             </div>
 
             <div class="push"></div>
