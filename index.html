@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Apache webserver</title>
+        <link rel="stylesheet" type="text/css" href="/apache_index/assets/style.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+        <script type="text/javascript">
+            $( document ).ready( function() {
+                setInterval( function() {
+                    var date = new Date();
+
+                    day     = date.getDate();
+                    month   = date.getMonth();
+                    year    = date.getFullYear();
+                    hours   = date.getHours();
+                    minutes = date.getMinutes();
+                    seconds = date.getSeconds();
+
+
+
+                    $(".date").html(digit( day )  + "-" + digit( month )  + "-" + digit( year ) );
+                    $(".time").html(digit( hours )  + ":" + digit( minutes )  + ":" + digit( seconds ) );
+
+                }, 1000 );
+
+                $( ".sidebar-left" ).on( "mouseenter", function() {
+                    $(this).animate({
+                        "left" : "0%"
+                    }, 1000, function() {
+                        $( ".clock" ).css( "display", "none" );
+                        $( ".times" ).css( "display", "block" );
+                    });
+
+                });
+
+                $( ".sidebar-left" ).on( "mouseleave", function() {
+                    $(this).animate({
+                        "left" : "-2.8%"
+                    }, 1000, function() {
+                        $( ".clock" ).css( "display", "block" );
+                        $( ".times" ).css( "display", "none" );
+                    });
+                });
+
+                $( ".sidebar-left-2" ).on( "click", function() {
+                    $(".phpinfo").slideToggle("slow");
+                });
+
+                $(".close").on("click",function(){
+                    $(this).parent().css("display","none");
+                });
+            });
+
+            function digit( digit ) {
+                return (digit.toString().length) === 1 ? "0" + digit : digit;
+            }
+        </script>
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="header">
+                <h2> Apache webserver : {currentUser} </h2>
+            </div>
+
+            <div class="block">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Last modified</th>
+                            <th>Enter project</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="/apache_index/assets/images/phpmyadmin-icon.png" alt="PHP my admin" class="phpmyadmin-icon">
+                            </td>
+                            <td>PhpMyAdmin</td>
+                            <td>-</td>
+                            <td>
+                                <li><a href="/phpmyadmin" target="_BLANK" title="phpmyadmin">PhpMyAdmin</a></li>
+                            </td>
+                        </tr>                   
+                        {rows}
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div id="sidebar1" class="sidebar-left">
+                <div class="times">
+                    <span class="date">00-00-0000</span>
+                    <span class="time">00:00:00</span>
+                </div>
+
+                <div class="clock show-button">
+                    <img src="/apache_index/assets/images/clock-icon.png" alt="Clock">
+                </div>
+
+                <span class="clear"></span>
+
+            </div>
+            
+            <div class="tooltip">
+                <span class="close">&times;</span>
+                <br>
+                Click to view PHP info. <br>
+                Click again to close.
+
+                <div class="arrow-right"></div>
+            </div>
+
+            <div id="sidebar2" class="sidebar-left-2 sidebar">
+    
+                <div class="phpinfo">
+                    {phpinfo}
+                </div>
+
+                <div class="phpicon show-button">
+                    <img src="/apache_index/assets/images/php-icon.png" alt="PHP">
+                </div>
+
+            </div>
+
+            <div class="push"></div>
+
+            <div class="footer">
+                &copy; Kevin Newesil 2014. <br> 
+                This page took {loadTime} seconds to load.
+            </div>
+            
+        </div>
+    </body>
+</html>

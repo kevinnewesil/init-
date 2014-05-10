@@ -1,0 +1,308 @@
+/* Set the default charset of the document to utf8 */
+
+@charset "utf8";
+
+/* Default CSS and reset list */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+	list-style:none;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CSS start */
+
+body {
+	font-family: 'sans-serif', verdana;
+	width:100%;
+	height:100%;
+	background-color:#131313;
+	color:#EEEEEE;
+}
+
+.container {
+	width:1080px;
+	height:100%;
+	margin:0 auto;
+}
+
+.container .header {
+	width:100%;
+	height:100%;
+	background-color: rgba(27, 27, 27, 0.96);
+	font-weight: 300;
+	font-size:2em;
+	padding:15px 5px;
+	text-align: center;
+	border-radius: 0 0 4px 4px;
+	margin: 0 0 20px 0;
+
+	-webkit-box-shadow: 0px 5px 5px 1px rgba(17, 17, 17, 0.4);
+	-moz-box-shadow:    0px 5px 5px 1px rgba(17, 17, 17, 0.4);
+	box-shadow:         0px 5px 5px 1px rgba(17, 17, 17, 0.4);
+}
+
+.container .block{
+	width:100%;
+	height:100%;
+}
+
+img.thumbnail{
+	width:64px;
+	height:64px;
+}
+
+/**	__TABLES__ **/
+
+table{
+	width:90%;
+	height:100%;
+	margin:0 4%;
+	border-left: 2px solid rgba(68, 54, 54, 0.4);
+}
+
+table thead{
+	background-color:#222222;
+	height:100%;
+}
+
+table thead tr{}
+
+table thead tr th{
+	padding:10px 0;
+	border-left: 2px solid rgba(68, 54, 54, 0.4);
+	width:2%;
+}
+
+table tbody tr{
+	border-bottom:#222222 2px solid;
+	height:100%;
+}
+
+table tbody>:nth-child(odd){
+	background-color: rgba(23, 16, 16, 0.8);
+}
+
+table tbody tr>:first-child{
+	background-color: rgba(27, 27, 27, 0.96);
+}
+
+table.table tbody tr>:last-child{
+	padding:0;
+}
+
+table tbody tr>:last-child:hover{
+	background-color: rgba(34, 34, 34, 0.96);
+}
+table tbody tr:nth-child(odd)>:last-child:hover{
+	background-color: rgba(48, 18, 18, 0.8);
+}
+
+table tbody tr td{
+	text-align:center;
+	vertical-align: middle;
+	padding:15px 0;
+	height:100%;
+}
+
+table tbody tr td img.phpmyadmin-icon{
+	width:86px;
+	height:50px;
+}
+
+table tbody tr td li{
+	width:100%;
+	height:100%;
+}
+
+table tbody tr td li a{
+	display:block;
+	width:100%;
+	height:30%;
+	color:rgba(185, 73, 21, 1);
+	font-weight:bold;
+	padding:12% 0;
+}
+
+table tbody tr td:hover a {
+	text-decoration: underline;
+}
+
+table.table thead tr>:first-child, table.table tbody tr>:first-child{
+	width:1%;
+}
+
+.sidebar-left{
+	position:fixed;
+	left:-2.8%;
+	top:15%;
+	width:7%;
+	min-height:64px;
+	background-color: rgba(27, 27, 27, 0.96);
+	padding:5px;
+	border-radius: 0px 10px 10px 0;
+	text-align:center;
+	vertical-align: middle;
+	line-height: 16px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.sidebar-left .times{
+	display:none;
+	vertical-align: middle;
+	padding-top:14%;
+}
+
+.sidebar-left .clock img{
+	width:64px;
+	height:64px;
+	float:right;
+}
+
+.footer{
+	position:relative;
+	bottom:10px;
+	width:1080px;
+	text-align:center;
+	font-weight:100;
+	font-size:11px;
+	color:rgba(220,220,220,0.5);
+}
+
+.clear{
+	clear:both;
+}
+
+.push{
+	height:100%;
+	min-height: 100px;
+}
+
+.close{
+	padding:0;
+	margin:0;
+	display:block;
+	font-size:14px;
+	font-weight: bolder;
+}
+
+
+/** __STYLE FOR PHPINFO SIDEBAR__ **/
+
+.sidebar{
+	width:1088px;
+	position:absolute;
+	top:0;
+	
+	text-align:right !important;
+	border-left: rgba(27, 27, 27, 0.96) 2px solid;
+	padding:0;
+	
+	z-index:100;
+	background-color: black;
+}
+
+.sidebar table tr{
+	padding:5px;
+}
+
+.sidebar table tr>:first-child{
+	padding: 10px 15px;
+}
+
+.phpinfo{
+	display:none;
+}
+
+.phpicon{
+	position:fixed;
+	right:0;
+	top:15%;
+	background-color: rgba(27, 27, 27, 1);
+	border-radius: 10px 0 0 10px;
+	vertical-align: middle;
+}
+
+.tooltip{
+	position:fixed;
+	top:15%;
+	right:5%;
+	vertical-align: middle;
+	background-color: rgba(27, 27, 27, 1);
+	padding:5px;
+	border-radius: 4px;
+	font-size: 8px;
+	width:8%;
+	height:54px;
+}
+
+.arrow-right{
+	position:fixed;
+	top:22.4%;
+	right:4.45%;
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom:10px solid transparent;
+	border-left: 10px solid rgba(27, 27, 27, 1);
+}
+
+.phpicon img{
+	width:64px;
+	height:64px;
+}
+
+.sidebar pre {}
+.sidebar a:link {}
+.sidebar a:hover {}
+.sidebar .center {}
+.sidebar h1 {}
+.sidebar h2 {}
+.sidebar .p {}
+.sidebar .e {}
+.sidebar .h {}
+.sidebar .v {}
+.sidebar .vr {}
+.sidebar img {}
+.sidebar hr {display: none;}
