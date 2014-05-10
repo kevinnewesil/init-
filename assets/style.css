@@ -228,7 +228,7 @@ table.table thead tr>:first-child, table.table tbody tr>:first-child{
 }
 
 .sidebar-left-3{
-	position:absolute;
+	position:fixed;
 	left:-6.2%;
 	top:25%;
 	width:150px;
