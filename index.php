@@ -21,6 +21,4 @@
 	// Register the autoloader because I'm lazy.
 	\core\Helper::With('autoloader') -> registerLoad();
 
-	\core\Helper::dd( \core\Helper::With('VHost') -> getVhosts() );
-
 	die( \core\Helper::With('base') -> build() );

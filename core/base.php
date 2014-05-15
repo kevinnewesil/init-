@@ -58,6 +58,15 @@
 				$modified = date( "d F Y H:i:s.", filemtime( $value ) );
 				$icon = ( is_dir( $value ) ) ? 'folder' : 'file';
 
+				$vhosts = \core\Helper::With('VHost') -> getVhosts();
+				$link = $value;
+
+				foreach($vhosts as $vhost) {
+					if( $vhost['documentroot'] === $_SERVER['DOCUMENT_ROOT'] . DS . $value ) {
+						$link = "http://" . $vhost['servername'];
+					}
+				}
+
 				$rows .= str_replace(
 					$this -> _placeholders['tabledata'],
 					array(
@@ -66,7 +75,7 @@
 						$modified,
 						str_replace(
 							$this -> _placeholders['link'],
-							array( $value,  str_replace( '_', ' ', ucfirst( $value ) ) ),
+							array( $link,  str_replace( '_', ' ', ucfirst( $value ) ) ),
 							$this -> _templates['link']
 						),
 					),

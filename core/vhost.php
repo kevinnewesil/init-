@@ -41,8 +41,11 @@
 		private function readVhosts() {
 			if( !$fh = fopen( $this -> _vhost_conf , 'r' ) ) { return false; }
 
+			$i = 0;
+
 			while( !feof( $fh ) ) {
-				$this -> parseVhost( fgets( $fh ) );
+				if( $this -> parseVhost( fgets( $fh ), $i ) ) { ++$i; }
+				
 			}
 
 			return fclose( $fh );
@@ -54,31 +57,27 @@
 		 * @param  [type] $line [description]
 		 * @return [type]       [description]
 		 */
-		private function parseVhost( $line ) {
+		private function parseVhost( $line, $i ) {
 
-			$rule = false;
+			if( $line === "" ) { return false; }
 
-			if ( preg_match( "/<VirtualHost/i", $line ) ) {
-				preg_match( "/<VirtualHost\s+(.+):(.+)\s*>/i", $line, $results );
+			$rule = true;
 
-				if ( isset( $results[1] ) ) { $this -> _hostname = $results[1]; }
-				if ( isset( $results[2] ) ) { $this -> _port = $results[2]; }
+			if( preg_match( "/ServerName/i", $line )) {
+				preg_match( "/ServerName\s+(.*)/", $line, $results );
 
-				$rule = true;
-			}
-
-			if ( preg_match( "/<\/VirtualHost>/i", $line ) && $this -> _hostname != $_SERVER['HTTP_HOST'] ) {
-				$this -> _vhosts[] = $this -> _hostname . ( $this -> _port == '80' ? '' : ':'. $this -> _port );
+				if( $results[1] === "localhost" ) { return false; }
+				$this -> _vhosts[$i]['servername'] = $results[1];
 				$rule = false;
 			}
 
-			if ( $rule === true ) {
-				if ( preg_match( "/ServerName/i", $line ) ) {
-					preg_match( "/ServerName\s+(.+)\s*/i", $line, $results );
-					if ( isset($results[1] ) ) {
-				 		$this -> _hostname = $results[1];
-					}
-				}
+			if( preg_match( "/DocumentRoot/i", $line )) {
+				preg_match( "/DocumentRoot\s+(.*)/", $line, $results );
+				
+				if( $results[1] === "\"" . $_SERVER['DOCUMENT_ROOT'] . "\"" ) { return false; }
+
+				$this -> _vhosts[$i]['documentroot'] = str_replace( "\"", "", $results[1] );
+				$rule = false;
 			}
 
 			return $rule;
