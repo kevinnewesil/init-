@@ -62,7 +62,7 @@
 				$link = $value;
 
 				foreach($vhosts as $vhost) {
-					if( $vhost['documentroot'] === $_SERVER['DOCUMENT_ROOT'] . DS . $value ) {
+					if( isset( $vhost['documentroot'] ) && $vhost['documentroot'] === $_SERVER['DOCUMENT_ROOT'] . DS . $value ) {
 						$link = "http://" . $vhost['servername'];
 					}
 				}
