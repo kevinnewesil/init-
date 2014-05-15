@@ -9,10 +9,10 @@
 		protected $_renderTime   = 0;
 
 		/**
-		 * Base location of dir that should be scanned to show as index page for localhost.
-		 * @var string
+		 * Scan of the base dir showing all files and directories.
+		 * @var array
 		 */
-		protected $_scandir      = '';
+		protected $_scandir      = array();
 
 		/**
 		 * array of all used html templates.
@@ -21,7 +21,7 @@
 		protected $_templates    = array();
 
 		/**
-		 * 2D array that holds the placeholders for each template
+		 * 2D array that holds the placeholders for each template.
 		 * @var array
 		 */
 		protected $_placeholders = array();
@@ -50,11 +50,45 @@
 
 		public function build() {
 
+			// Predefine row variable for appending html to it later on.
+			$rows = '';
 
+			foreach ( $this -> _scandir as $value ) {
+
+				$modified = date( "d F Y H:i:s.", filemtime( $value ) );
+				$icon = ( is_dir( $value ) ) ? 'folder' : 'file';
+
+				$rows .= str_replace(
+					$this -> _placeholders['tabledata'],
+					array(
+						$icon . '-icon.png',
+						str_replace( '_', ' ', ucfirst( $value ) ),
+						$modified,
+						str_replace(
+							$this -> _placeholders['link'],
+							array( $value,  str_replace( '_', ' ', ucfirst( $value ) ) ),
+							$this -> _templates['link']
+						),
+					),
+					$this -> _templates['tabledata']
+				);
+			}
+
+			return str_replace(
+				$this -> _placeholders['index'],
+				array( get_current_user(), $rows, $this -> getPHPInfo(), ( microtime(true) - $this -> _renderTime ) ),
+				$this -> _templates['index']
+			);
 
 		}
 
-		private function cleanScanDir() {
+		/**
+		 * [cleanScanDir description]
+		 * @return [type] [description]
+		 * 
+		 * @todo  if $add === true then add extra links such as phpmyadmin or related.
+		 */
+		private function cleanScanDir( $add = false ) {
 			// Remove the ., this file, and hidden files.
 			unset( $this -> _scandir[0] );
 
@@ -64,7 +98,7 @@
 				if( $value[0] === '.' ) { unset( $this -> _scandir[$key] ); continue; }
 			}
 
-			Helper::dd($this -> _scandir);
+			return;
 		}
 
 		/**
