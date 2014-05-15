@@ -1,7 +1,7 @@
 <?php namespace core;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	class Helper {
 
@@ -22,7 +22,7 @@
 		 * @return [type]        [description]
 		 */
 		public static function config( $param ) {
-			$config = require('webserver_index/config/config.php');
+			$config = require('init-/config/config.php');
 			return $config[$param];
 		}
 
@@ -33,7 +33,7 @@
 		 */
 		public static function dd( $data ) {
 			ob_start();
-			
+
 			echo '<pre>';
 			var_dump($data);
 			echo '</pre>';
