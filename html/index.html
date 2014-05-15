@@ -52,7 +52,7 @@
                     $(this).parent().css("display","none");
                 });
 
-                navigator.geolocation.getCurrentPosition( successCallback, errorCallback, { maximumAge : 600000 } );
+                navigator.geolocation.getCurrentPosition( successCallback, errorCallback);
 
                 function successCallback( position ) {
                     lat = position.coords.latitude;
