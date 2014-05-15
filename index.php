@@ -12,8 +12,8 @@
 	error_reporting(-1);
 	
 	// Require the autoloader and helper file for easy access to rest of filestructure
-	require_once('webserver_index/core/autoloader.php');
-	require_once('webserver_index/core/helper.php');
+	require_once('init-/core/autoloader.php');
+	require_once('init-/core/helper.php');
 
 	// Set the default date and timezone to amsterdam.
 	date_default_timezone_set( \core\Helper::config( 'timezone' ) );
