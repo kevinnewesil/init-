@@ -7,73 +7,20 @@
 	 * @todo get icons for file extentions and show file extention as fileTypeIcon
 	 */
 
+	// Start session and enable error reporting to all for now as it's debugging version.
 	session_start();
 	error_reporting(-1);
-
-	date_default_timezone_set('Europe/Amsterdam');
-
-	$start    = microtime(true);
-
-	$scandir  = scandir( $_SERVER['DOCUMENT_ROOT'] );
 	
-	$template = file_get_contents( 'webserver_index/index.html' );
-	$linkTmp  = file_get_contents( 'webserver_index/link.html' );
-	$tableTmp = file_get_contents( 'webserver_index/tabledata.html' );
+	// Require the autoloader and helper file for easy access to rest of filestructure
+	require_once('webserver_index/core/autoloader.php');
+	require_once('webserver_index/core/helper.php');
 
-	$tablePH  = array( '{fileTypeIcon}', '{name}', '{lastModified}', '{link}' );
+	// Set the default date and timezone to amsterdam.
+	date_default_timezone_set( \core\Helper::config( 'timezone' ) );
 
-	ob_start();
-	phpinfo(INFO_GENERAL);
-	$pinfo = ob_get_contents();
-	ob_end_clean();
-	 
-	$pinfo = preg_replace( '%^.*<body>(.*)</body>.*$%ms','$1',$pinfo);
+	// Register the autoloader because I'm lazy.
+	\core\Helper::With('autoloader') -> registerLoad();
 
-	// Predefine empty variables for appending.
-	$rows = '';
-	
-	// Remove the ., .. and this file from the array.
-	unset( $scandir[0] );
-	unset( $scandir[1] );
-	unset( $scandir[array_search( 'index.php', $scandir )] );
-	unset( $scandir[array_search( '.DS_Store', $scandir )] );
+	\core\Helper::dd( \core\Helper::With('VHost') -> getVhosts() );
 
-	foreach( $scandir as $value ) {
-
-		$modified = date( "d F Y H:i:s.", filemtime( $value ) );
-
-		if( is_dir( $value ) ) {
-			$icon = 'folder';
-		} else {
-			$icon = 'file';
-		}
-
-		$rows .= str_replace(
-			$tablePH, 
-			array(
-				$icon . '-icon.png',
-				str_replace( '_', ' ', ucfirst( $value ) ),
-				$modified,
-				str_replace( array("{href}","{link}"), array($value, str_replace( '_', ' ', ucfirst( $value ) ) ), $linkTmp) ,
-			),
-			$tableTmp 
-		);
-	}
-
-	$temp = str_replace( 
-		array(
-			'{currentUser}',
-			'{rows}',
-			'{phpinfo}',
-			'{loadTime}'
-		),
-		array(
-			get_current_user(),
-			$rows,
-			$pinfo,
-			microtime(true) - $start
-		),
-		$template
-	);
-
-	die($temp);
+	die( \core\Helper::With('base') -> build() );
