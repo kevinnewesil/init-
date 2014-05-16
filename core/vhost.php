@@ -6,7 +6,7 @@
 		 * Path to VHOST file. Default -unix path.
 		 * @var string
 		 */
-		protected $_vhost_conf = '/etc/apache2/extra/httpd-vhosts.conf';
+		protected $_vhost_conf = '/etc/apache2/sites-available/default';
 
 		/**
 		 * Name of the host

@@ -38,7 +38,7 @@
 
 			foreach ( array( 'index', 'link', 'tabledata' ) as $templateName ) {
 				$this -> _templates[$templateName] = file_get_contents( 
-					Helper::config('base') . DS . Helper::config('project') . DS . 'html' . DS . $templateName . '.html'
+					Helper::config('base') . DIRECTORY_SEPARATOR . Helper::config('project') . DIRECTORY_SEPARATOR . 'html' . DIRECTORY_SEPARATOR . $templateName . '.html'
 				);
 			}
 
@@ -62,7 +62,7 @@
 				$link = $value;
 
 				foreach($vhosts as $vhost) {
-					if( isset( $vhost['documentroot'] ) && $vhost['documentroot'] === $_SERVER['DOCUMENT_ROOT'] . DS . $value ) {
+					if( isset( $vhost['documentroot'] ) && $vhost['documentroot'] === $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . $value ) {
 						$link = "http://" . $vhost['servername'];
 					}
 				}

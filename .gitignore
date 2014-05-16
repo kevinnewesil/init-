@@ -1,0 +1,6 @@
+#Ignore all hidden files except for hidden gitignore file
+.*
+!/.gitignore
+
+#Exclude all config files.
+/config/*
