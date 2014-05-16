@@ -1,13 +1,6 @@
 <?php namespace core;
 
 	class VHost {
-
-		/**
-		 * Path to VHOST file. Default -unix path.
-		 * @var string
-		 */
-		protected $_vhost_conf = '/etc/apache2/sites-available/default';
-
 		/**
 		 * Name of the host
 		 * @var string
@@ -39,7 +32,7 @@
 		 * @return boolean return what happend to the file handler
 		 */
 		private function readVhosts() {
-			if( !$fh = fopen( $this -> _vhost_conf , 'r' ) ) { return false; }
+			if( !$fh = fopen( Helper::Config('vhost') , 'r' ) ) { return false; }
 
 			$i = 0;
 

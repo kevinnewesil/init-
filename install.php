@@ -20,6 +20,7 @@
 
 	unset($_POST);
 
+	if( !is_dir( 'config' ) ) { if(!mkdir( 'config' )) { die('error creating config folder'); } }
 	$fh = fopen( 'config/config.php', 'w' );
 
 	$data = '<?php
