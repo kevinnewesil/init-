@@ -33,8 +33,8 @@ echo "Successfully cloned repository into $webserver_base/init-"
 ### Fix permission first of all.
 echo "Settings webserver permissions..."
 
-find $webserver_base -type f -exec chmod 644 {} \;
-find $webserver_base -type d -exec chmod 775 {} \;
+sudo find $webserver_base -type f -exec chmod 644 {} \;
+sudo find $webserver_base -type d -exec chmod 775 {} \;
 
 ### Get the username and group for the chown command.
 echo "Enter username"
@@ -45,11 +45,11 @@ read groupname
 
 ### Execute chown command to set user and group for creating config file.
 echo "Settings user and group for webserver..."
-chown -R $username:$groupname $webserver_base
+sudo chown -R $username:$groupname $webserver_base
 
 ### Copy the index file to the root of the webserver and start the fun.
 echo "Copying index to root folder of webserver..."
-cp $webserver_base/init-/index.php $webserver_base/index.php;
+sudo cp $webserver_base/init-/index.php $webserver_base/index.php;
 
 ### Thank you come again
 echo "install script ran successfully"
