@@ -14,21 +14,18 @@ Install the system as following:
     ```
 ***
 
-2. Copy the index file into the root folder. 
+2. Run the installer
 
     ```Batchfile
-    (sudo) cp /path/to/webserver/init-/index.php /path/to/webserver/index.php
+    cd /path/to/webserver/init-; ./install.sh
+    ```
+
+May it happen that the error permission denied appears execute the following command to resolve the issue:
+
+    ```Batchfile
+    sudo chmod u+x /path/to/webserver/init-/install.sh
     ```
 ***
-
-3. Make sure the permission, owner, and user are correct for your localhost.
-to fix permission issues type the following in ur command line:
-    
-    ```Batchfile
-    find /path/to/werbserver/ -type f -exec chmod 644 {} \; 
-    find /path/to/webserver/ -type d -exec chmod 775 {} \;  
-    chown -r username:webgroup /path/to/webserver;
-    ```
 
 ***To find the webgroup open the httpd.conf or apache2.conf file and search for the 2 lines saying:***
 
