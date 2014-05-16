@@ -9,20 +9,20 @@ Install the system as following:
 
 1. Clone the project into your localhost root folder.
 
-    ```Batchfile
+    ```Shell
     git clone https://github.com/kevinnewesil/init-
     ```
 ***
 
 2. Run the installer
 
-    ```Batchfile
+    ```Shell
     cd /path/to/webserver/init-; ./install.sh
     ```
 
 May it happen that the error permission denied appears execute the following command to resolve the issue:
 
-```Batchfile
+```Shell
 sudo chmod u+x /path/to/webserver/init-/install.sh
 ```
 
