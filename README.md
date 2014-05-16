@@ -22,9 +22,10 @@ Install the system as following:
 
 May it happen that the error permission denied appears execute the following command to resolve the issue:
 
-    ```Batchfile
-    sudo chmod u+x /path/to/webserver/init-/install.sh
-    ```
+```Batchfile
+sudo chmod u+x /path/to/webserver/init-/install.sh
+```
+
 ***
 
 ***To find the webgroup open the httpd.conf or apache2.conf file and search for the 2 lines saying:***
