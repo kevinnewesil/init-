@@ -1,3 +1,4 @@
+#!/bin/sh
 # copyright Kevin Newesil 2014 <kevin@sourjelly.net>
 # all rights reserver. please dont use this script to cause harm. 
 # for which we can not be held responsible and all useage of this script is completely in the 
@@ -7,39 +8,49 @@
 # 
 # enjoy using init-
 # 
-#!/bin/sh
 
-# current dir to get location of webserver.
-current_dir=$(pwd)
+### Get the data to preform a clone.
 
-if [[ "$current_dir" =~ "init-" ]]; then
+github_username="$1"
+github_password="$2"
+webserver_base="$3"
 
-	### Fix permission first of all.
-	echo "Settings webserver permissions..."
+echo "Enter github username (case sensitive!)"
+read github_username
 
-	find $current_dir/../ -type f -exec chmod 644 {} \;
-	find $current_dir/../ -type d -exec chmod 775 {} \;
+echo "Enter github password"
+read -s github_username
 
-	### Get the username and group for the chown command.
-	echo "Enter username"
-	read username
+echo "Enter the path of you webserver root: E.G. /var/www/"
+read -e webserver_base
 
-	echo "Enter webserver Group"
-	read groupname
+echo "Cloning repository into $webserver_base/init-"
+cd $webserver_base
 
-	### Execute chown command to set user and group for creating config file.
-	echo "Settings user and group for webserver..."
-	chown -R $username:$groupname $current_dir/../
+git clone "git@github.com:kevinnewesil/init-.git" "$webserver_base/init-"
+echo "Successfully cloned repository into $webserver_base/init-"
 
-	### Copy the index file to the root of the webserver and start the fun.
-	echo "Copying index to root folder of webserver..."
-	cp $current_dir/index.php $current_dir/../index.php;
+### Fix permission first of all.
+echo "Settings webserver permissions..."
 
-	### Thank you come again
-	echo "install script ran successfully"
-	exit
+find $webserver_base -type f -exec chmod 644 {} \;
+find $webserver_base -type d -exec chmod 775 {} \;
 
-else
-    echo "Not in correct directory. CD to the init- folder and try executing ./install.sh again"
-    exit
-fi
+### Get the username and group for the chown command.
+echo "Enter username"
+read username
+
+echo "Enter webserver Group"
+read groupname
+
+### Execute chown command to set user and group for creating config file.
+echo "Settings user and group for webserver..."
+chown -R $username:$groupname $webserver_base
+
+### Copy the index file to the root of the webserver and start the fun.
+echo "Copying index to root folder of webserver..."
+cp $webserver_base/init-/index.php $webserver_base/index.php;
+
+### Thank you come again
+echo "install script ran successfully"
+exit
