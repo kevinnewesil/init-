@@ -4,3 +4,4 @@
 
 #Exclude all config files.
 /config/*
+!/config/README
