@@ -3,27 +3,11 @@ init dashboard
 
 *A webserver dashboard for nerds by nerds.*
 
-Install the system as following:
+Install the system by running the following command in your favorite command line tool:
 --------
 ***
-
-1. Clone the project into your localhost root folder.
-
-    ```Shell
-    git clone https://github.com/kevinnewesil/init-;
-    ```
-***
-
-2. Run the installer
-
-    ```Shell
-    cd /path/to/webserver/init-; ./install.sh;
-    ```
-
-May it happen that the error permission denied appears execute the following command to resolve the issue:
-
 ```Shell
-sudo chmod u+x /path/to/webserver/init-/install.sh;
+bash <(curl https://raw.githubusercontent.com/kevinnewesil/init-/master/install.sh)
 ```
 
 ***
