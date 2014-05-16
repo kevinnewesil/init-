@@ -8,7 +8,7 @@
 
 		public static function load( $name ) {
 			$base = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . \core\Helper::config( 'project' );
-			return require_once( $base . DIRECTORY_SEPARATOR . str_replace( '\\', '/', $name ) . '.php' );
+			return require_once( $base . DIRECTORY_SEPARATOR . strtolower( str_replace( '\\', '/', $name ) ) . '.php' );
 		}
 
 	}
