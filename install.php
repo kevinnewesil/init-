@@ -37,6 +37,6 @@
 	fwrite( $fh, $data );
 	fclose( $fh );
 
-	exit('lol');
+	header( 'location:http://localhost' );
 
 	
