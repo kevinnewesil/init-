@@ -21,7 +21,7 @@ read github_username
 echo "Enter github password"
 read -s github_username
 
-echo "Enter the path of you webserver root: E.G. /var/www/"
+echo "Enter the path of you webserver root: E.G. /var/www (without ending /!!!)"
 read -e webserver_base
 
 echo "Cloning repository into $webserver_base/init-"
@@ -36,8 +36,8 @@ sudo cp $webserver_base/init-/index.php $webserver_base/index.php;
 
 ### Fix permission first of all.
 echo "Settings webserver permissions..."
-sudo find $webserver_base -type f -exec chmod 644 {} \;
-sudo find $webserver_base -type d -exec chmod 775 {} \;
+sudo find $webserver_base/ -type f -exec chmod 644 {} \;
+sudo find $webserver_base/ -type d -exec chmod 775 {} \;
 
 ### Get the username and group for the chown command.
 echo "Enter username"
@@ -48,7 +48,7 @@ read groupname
 
 ### Execute chown command to set user and group for creating config file.
 echo "Settings user and group for webserver..."
-sudo chown -R $username:$groupname $webserver_base
+sudo chown -R $username:$groupname $webserver_base/
 
 ### Thank you come again
 echo "install script ran successfully"
