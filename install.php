@@ -12,3 +12,31 @@
 	error_reporting( -1 );
 	
 	if( empty( $_POST ) ) { die( file_get_contents( 'html/install/index.html' ) ); }
+
+	$vhost    = $_POST['vhost'];
+	$phpinfo  = $_POST['phpinfo'];
+	$timezone = $_POST['timezone'];
+	$project  = $_POST['foldername'];
+
+	unset($_POST);
+
+	$fh = fopen( 'config/config.php', 'w' );
+
+	$data = '<?php
+	return array(
+		/* Define base paths for the project to run in. */
+		\'base\'     => $_SERVER[\'DOCUMENT_ROOT\'] . DIRECTORY_SEPARATOR,
+		\'project\'  => \'' . $project . '\',
+		/* Set the default dates and timezone configuration correct. */
+		\'timezone\' => \'' . $timezone . '\',
+		\'phpinfo\'  => ' . $phpinfo . ',
+		/* Location of vhost file to fetch server aliases instead of localhost links */
+		\'vhost\'    => \'' . $vhost . '\',
+	);';
+
+	fwrite( $fh, $data );
+	fclose( $fh );
+
+	exit('lol');
+
+	
