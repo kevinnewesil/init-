@@ -10,11 +10,15 @@ Install the system as following:
 1. Clone the project into your localhost root folder. 
     
         git clone https://github.com/kevinnewesil/init-
+
 ***
+
 2. Copy the index file into the root folder. 
 	
         (sudo) cp /path/to/webserver/init-/index.php /path/to/webserver/index.php
+
 ***
+
 3. Make sure the permission, owner, and user are correct for your localhost.
 to fix permission issues type the following in ur command line:
     
