@@ -30,9 +30,12 @@ cd $webserver_base
 git clone "git@github.com:kevinnewesil/init-.git" "$webserver_base/init-"
 echo "Successfully cloned repository into $webserver_base/init-"
 
+### Copy the index file to the root of the webserver and start the fun.
+echo "Copying index to root folder of webserver..."
+sudo cp $webserver_base/init-/index.php $webserver_base/index.php;
+
 ### Fix permission first of all.
 echo "Settings webserver permissions..."
-
 sudo find $webserver_base -type f -exec chmod 644 {} \;
 sudo find $webserver_base -type d -exec chmod 775 {} \;
 
@@ -46,10 +49,6 @@ read groupname
 ### Execute chown command to set user and group for creating config file.
 echo "Settings user and group for webserver..."
 sudo chown -R $username:$groupname $webserver_base
-
-### Copy the index file to the root of the webserver and start the fun.
-echo "Copying index to root folder of webserver..."
-sudo cp $webserver_base/init-/index.php $webserver_base/index.php;
 
 ### Thank you come again
 echo "install script ran successfully"
