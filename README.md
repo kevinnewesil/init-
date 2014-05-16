@@ -7,13 +7,15 @@ Install the system as following:
 --------
 ***
 
-1. Clone the project into your localhost root folder. 
+1. Clone the project into your localhost root folder.
+
     	```Batchfile
         git clone https://github.com/kevinnewesil/init-
         ```
 ***
 
 2. Copy the index file into the root folder. 
+
 		```Batchfile
         (sudo) cp /path/to/webserver/init-/index.php /path/to/webserver/index.php
         ```
