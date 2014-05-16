@@ -7,7 +7,7 @@ Install the system by running the following command in your favorite command lin
 --------
 ***
 ```Shell
-bash <(curl https://raw.githubusercontent.com/kevinnewesil/init-/v1.1/install.sh)
+bash <(curl https://raw.githubusercontent.com/kevinnewesil/init-/v1.1.1/install.sh)
 ```
 
 ***
