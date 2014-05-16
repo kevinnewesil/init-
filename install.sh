@@ -37,7 +37,7 @@ sudo cp $webserver_base/init-/index.php $webserver_base/index.php;
 ### Fix permission first of all.
 echo "Settings webserver permissions..."
 sudo find $webserver_base/ -type f -exec chmod 644 {} \;
-sudo find $webserver_base/ -type d -exec chmod 775 {} \;
+sudo find $webserver_base/ -type d -exec chmod 755 {} \;
 
 ### Get the username and group for the chown command.
 echo "Enter username"
