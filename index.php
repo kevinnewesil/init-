@@ -25,3 +25,5 @@
 	\core\Helper::With('autoloader') -> registerLoad();
 
 	die( \core\Helper::With('base') -> build() );
+
+	//testing this shit mwuhaahaha;
