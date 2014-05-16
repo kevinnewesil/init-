@@ -56,7 +56,17 @@
 			foreach ( $this -> _scandir as $value ) {
 
 				$modified = date( "d F Y H:i:s.", filemtime( $value ) );
-				$icon = ( is_dir( $value ) ) ? 'folder' : 'file';
+				if ( $value === ".." ) {
+					$icon = "folder-up";
+				} else if ( is_dir( $value ) ) {
+					$icon = 'folder';
+				} else {
+					$extExpl = explode( '.', $value );
+					
+					if( $extExpl[1] === "jpeg" ) { $extExpl[1] = "jpg"; }
+					
+					$icon = $extExpl[1];
+				}
 
 				$vhosts = \core\Helper::With('VHost') -> getVhosts();
 				$link = $value;
