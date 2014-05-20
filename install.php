@@ -11,7 +11,9 @@
 	session_start();
 	error_reporting( -1 );
 	
-	if( empty( $_POST ) ) { die( file_get_contents( 'html/install/index.html' ) ); }
+	if( empty( $_POST ) ) { 
+		die( file_get_contents( 'html/install/index.html' ) ); 
+	}
 
 	$vhost    = $_POST['vhost'];
 	$phpinfo  = $_POST['phpinfo'];
