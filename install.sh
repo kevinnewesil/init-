@@ -9,6 +9,30 @@
 # enjoy using init-
 # 
 
+### check if programms needed are installed
+
+hash git 2>/dev/null || {
+	echo -e "Git is required but not installed.. Install Git? [y/n] \c"; 
+	read gitinstall;
+
+	if [ $gitinstall = "y" ] || [ $gitinstall = "Y" ];
+	then
+		if type "apt-get" > /dev/null; then
+			sudo apt-get install git;
+		fi
+
+		if type "yum" > /dev/null; then
+			sudo yum install git;
+		fi
+
+		if type "brew" > /dev/null; then
+			sudo brew install git;
+		fi
+	fi
+}
+
+exit 1;
+
 ### Get the data to preform a clone.
 
 github_username="$1"
