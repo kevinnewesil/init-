@@ -49,7 +49,7 @@ read -e webserver_base
 echo "Cloning repository into $webserver_base/init-"
 cd $webserver_base
 
-git clone "https://github.com/kevinnewesil/init-" "init-"
+git clone "https://github.com/kevinnewesil/init-" $webserver_base"/init-"
 echo "Successfully cloned repository into $webserver_base/init-"
 
 ### Copy the index file to the root of the webserver and start the fun.
