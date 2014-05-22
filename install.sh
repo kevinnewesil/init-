@@ -31,8 +31,6 @@ hash git 2>/dev/null || {
 	fi
 }
 
-exit 1;
-
 ### Get the data to preform a clone.
 
 github_username="$1"
